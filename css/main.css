@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+/* body */
+body {line-height: 1.5; font-family: "Noto Sans KR", sans-serif; overflow-x: hidden; position: relative;}
+/* cho overflow-x: hidden; để đảm bảo cấu trúc page */
+.inner {width: 1600px; margin: 0 auto;}
+
+@keyframes rotate {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(360deg);} 
+}
+
+/* header */
+#header::after {content: url("../images/circle_txt.png"); position: absolute; left: calc(50% + 680px); top: -100px; animation: rotate 15s linear infinite; z-index: 2;}
+#header .inner {display: flex; justify-content: space-between; padding: 20px 0; align-items: center;}
+/* cho align-items: center; để cả logo và chữ đều ngang hàng */
+#header .gnb {display: flex;}
+#header nav {margin-left: auto; margin-right: 50px;}
+#header .gnb > li > a {display: block; padding: 10px 40px; font-size: 18px; font-weight: 700; transition: all 0.5s;}
+#header .ham {width: 50px; height: 50px; border-radius: 50%; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); font-size: 0; background: url(../images/ham.svg) no-repeat center center / 36px; cursor: pointer; position: relative; z-index: 4;}
+/* cho cursor: pointer; để khi rê chuột lên thì chuyển sang ngón tay, chỉ rằng có thể nhấn được. Cho center center / 36px để điều chỉnh kích cỡ background, có thể dùng 90%, 80%. Cho lên layer đầu tiên */
+#header .gnb > li:hover > a {color: #ff9e1a;}
+#header .gnb > li {position: relative;}
+#header .gnb > li .depth2 {left: calc(50% - 100px); width: 200px; position: absolute; background: #fff; padding: 25px 0; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); display: none; z-index: 3;}
+#header .gnb > li .depth2 li a {display: block; text-align: center;  padding: 5px 20px; text-align: left; padding-left: 20px; transition: all 0.5s;}
+/* #header .gnb > li:hover .depth2 {display: block;} */
+#header .gnb > li .depth2 li a:hover {color: #fff; background: #ff9e1a;}
+
+
+/* main */
+#main h2 { font-family: "DM Serif Display", serif; color: #005ad5; font-size: 80px; font-weight: 400; text-transform: capitalize;}
+/* lấy đoạn font này font-family: "DM Serif Display", serif;  từ google font */
+#main h2::before {content: "Auntie Anne's"; display: block; color: #ff9e1a; font-size: 15px;}
+#main h2 + p {font-size: 20px; color: #999999;}
+/* p ở ngay sau h2 nên bấm dấu cộng */
+
+
+/* main_banner */
+.main_banner .swiper {text-align: center;}
+
+
+/* menu */
+@keyframes swing {
+  0% {transform: rotate(-3deg);}
+  50% {transform: rotate(3deg);}
+  100% {transform: rotate(-3deg);}
+}
+
+.menu {padding: 200px 0; text-align: center;}
+.menu ul {display: flex; align-items: flex-start;}
+/* cho align-items: flex-start; để cho 2 li bên trong lên top, sau đó áp dụng margin cho li thứ 2 */
+.menu ul li {display: flex; align-items: center; width: 50%; text-align: left; position: relative;}
+.menu ul li a {animation: swing 2s infinite;}
+.menu ul li dl dt {font-size: 30px; font-weight: 700;}
+.menu ul li dl dd {color: #7f7f7f; font-size: 18px; padding-top: 30px;}
+.menu ul li:nth-child(2) {margin-top: 100px;}
+
+.menu ul li::before {content: url(../images/circle_dot.png); position: absolute; left: calc(50% - 240px); top: 0; transform: scale(0); transition: all 0.5s;}
+.menu ul li:hover::before {transform: scale(1);}
+
+
+/* brand */
+.brand {height: 700px; position: relative; overflow: hidden;}
+.brand video {object-fit: cover; width: 100%; height: 100%;}
+/* chú ý phần này để video ở chính giữa và dù phóng to hay nhỏ thì đều full màn hình */
+.brand .brand_txt {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center;}
+.brand .brand_txt a {display: inline-block; margin-top: 50px; transition: all 0.5s;} 
+.brand .brand_txt a:hover {transform: rotate(90deg) scale(1.1);}
+
+
+/* insta */
+.insta {padding: 200px 0 0; text-align: center;}
+.insta ul {margin-top: 50px;}
+/* display: flex; gap: 50px;  vì dùng slide nên bỏ cái đỏ ở trền trên, và width: calc((100% - 150px) / 4);  ở hàng dưới*/
+.insta ul li {border-radius: 50% 50% 0 0; overflow: hidden; position: relative;}
+.insta ul li img {width: 100%; display: block;}
+.insta ul li a::before {content: ""; background: rgba(0,0,0,0.8) url("../images/insta_fill.png") no-repeat center; position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; transition: all 0.5s;}
+.insta ul li:hover a::before {opacity: 1;}
+
+/* news */
+.news {padding: 200px 0; background: #eaf4ff; position: relative; overflow: hidden;}
+.news .inner {display: flex; gap: 40px;}
+.news .news_title {width: 400px;}
+.news .news_title h2 {line-height: 1.2;}
+.news .event {width: 500px; position: relative; overflow: hidden;}
+.news .event span {position: absolute; background: rgba(0,0,0,0.8); left: 0; bottom: -110px; width: 100%; color: #fff; padding: 30px; transition: all 0.5s;}
+.news .event:hover span {bottom: 0;}
+.news .event img {display: block; width: 100%;}
+.news .notice {width: 600px;}
+.news .notice li {border-top: 1px solid #ddd; padding: 50px 0; font-size: 20px; position: relative;}
+.news .notice li dl dd {color: #999; padding-top: 10px;}
+.news .notice a {position: absolute; left: -20px; top: 0; height: 100%; width: 100%; text-align: right; opacity: 0; transition: all 0.5s;}
+/* vì  position: absolute nên a đã mang yếu tố block, nên dùng text-align right*/
+.news .notice a img {height: 100%;}
+.news .notice li:hover a {opacity: 1; left: 0;}
+.news::before {content: url(../images/circle_dot.png); position: absolute; left: -80px; bottom: -80px; animation: rotate 20s linear infinite;}
+
+
+/* footer */
+#footer {color: rgba(255,255,255,0.5); text-align: center; }
+#footer .footer_up {background: #005ad5; padding: 80px; font-size: 15px;}
+#footer .footer_up .footer_sns {display: flex; justify-content: center; padding: 35px 0;} 
+#footer p {background: #ff9e1a; color: #fff; text-align: center; font-size: 12px; padding: 25px 0;}
+
+.gotop {position: fixed; right: 100px; bottom: 100px; width: 80px; height: 80px; border-radius: 50%; text-align: center; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); background:  #fff url("../images/gotop.png") no-repeat center 20px; color: #ff9e1a; font-weight: 700; font-size: 16px; line-height: 20px; padding-top: 40px;}
